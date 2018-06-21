@@ -1,0 +1,22 @@
+{
+  "name": "marketapp1.0",
+  "version": "1.0.0",
+  "description": "Core App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "^2.8.4",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "^0.4.0",
+    "passport-jwt": "^2.0.0"
+  },
+  "author": "Sabrina O",
+  "license": "ISC"
+}
