@@ -5,13 +5,26 @@ const mongoose = require('mongoose');
 const cors = require ('cors');
 var passport = require("passport");
 const config = require("./config/database");
+const configa = require("./config/agreementDB");
 
-// Connect to Database
+// Connect to Database marketauth
 mongoose.connect(config.database);
+
+// Connect to Database agreementdb
+mongoose.connect(configa.database).catch(err =>{
+  console.log('rejected promise:' +err);
+  mongoose.disconnect();
+});
+//mongoose.connect('mongodb://localhost:27017/agreementdb');
 
 //On Connection
 mongoose.connection.on('connected', () =>{
   console.log('Connected to database:' +config.database);
+});
+
+//On Connection
+mongoose.connection.on('connected', () =>{
+  console.log('Connected to database:' +configa.database);
 });
 
 //On Error
@@ -24,6 +37,7 @@ const app = express();
 
 // Routes
 const users = require('./routes/users');
+const agreements = require('./routes/agreements');
 
 const port = 3000;
 
@@ -44,6 +58,8 @@ require('./config/passport')(passport);
 
 // user route
 app.use('/users', users);
+
+app.use('/agreements', agreements);
 
 
 //Index route
